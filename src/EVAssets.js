@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Description from "./Description";
 import { useParams } from "react-router-dom";
+import Punycodes from "./punycodes";
 const tr46 = require("tr46");
 
 
@@ -9,11 +10,13 @@ const EVAssets = () => {
     const imgEl = useRef(null);
     const [title, setTitle] = useState("");
     const [unicode, setUnicode] = useState("");
-
-
     const {prefix, punycode, registration} = useParams();
 
     const nmcAsset = prefix.concat("/"+punycode);
+    const punyDescription = Punycodes.find(({ ID }) => ID === nmcAsset);
+    console.log(punyDescription)
+
+    console.log("length", Punycodes.length);
 
     const onLoad = () => {   
         const punycode = nmcAsset.substring(nmcAsset.indexOf("/")+1,nmcAsset.length);
