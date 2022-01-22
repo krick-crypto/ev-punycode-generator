@@ -6,15 +6,18 @@ import {
     Button,
     FormErrorMessage,
     FormHelperText,
-  } from '@chakra-ui/react'
+  } from '@chakra-ui/react';
+import { useNavigate } from "react-router-dom";
 
-const AssetForm = ({onSubmit, inputs, handleChange}) => {
 
-    const {nmcAsset, registration} = inputs
+const AssetForm = ({inputs, handleChange}) => {
+    
+    const {nmcAsset, registration} = inputs;
+    const navigate = useNavigate();
 
     return (
     <Center width="100vw" height="100vh">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={() => navigate("/ev")}>
             <FormControl mb={6}>
                 <FormLabel htmlFor="nmcAsset">Asset</FormLabel>
                 <Input id="nmcAsset" name="nmcAsset" type="text"
