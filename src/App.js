@@ -7,7 +7,7 @@ function App() {
     <div className="App">
      <Routes>
       <Route path="/" element={<AssetForm />} />
-      <Route path="/:prefix/:punycode/:registration" element={<EVAssets />}/>
+      <Route path="/:prefix/:punycode" element={<EVAssets />}/>
      </Routes>
     </div>
   );

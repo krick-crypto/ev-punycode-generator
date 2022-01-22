@@ -10,17 +10,18 @@ const EVAssets = () => {
     const imgEl = useRef(null);
     const [title, setTitle] = useState("");
     const [unicode, setUnicode] = useState("");
-    const {prefix, punycode, registration} = useParams();
+    const {prefix, punycode} = useParams();
 
     const nmcAsset = prefix.concat("/"+punycode);
     const punyDescription = Punycodes.find(({ ID }) => ID === nmcAsset);
-    console.log(punyDescription)
-
-    console.log("length", Punycodes.length);
+    const {Year, Month ,Day} = punyDescription;
+    const registration = `${Year}-${Month}-${Day}`;  
 
     const onLoad = () => {   
         const punycode = nmcAsset.substring(nmcAsset.indexOf("/")+1,nmcAsset.length);
         const convertedPunycode = tr46.toUnicode(punycode).domain;
+        
+
         setUnicode(convertedPunycode);
     
         const canvas = canvasEl.current;
@@ -41,7 +42,7 @@ const EVAssets = () => {
     
         ctx.font = "20px sans-serif";
         ctx.textAlign = "right";  
-        ctx.fillText(punycode, imgWidth - 25, imgHeight - 55);
+        ctx.fillText(nmcAsset, imgWidth - 25, imgHeight - 55);
         ctx.fillText(`Registered on ${registration}`, imgWidth - 25, imgHeight - 30);
     
         setTitle(`${convertedPunycode} | ${registration} | nmcAssets | ${nmcAsset}`);
