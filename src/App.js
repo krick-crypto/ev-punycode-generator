@@ -1,4 +1,3 @@
-import './App.css';
 import { useRef, useState } from "react";
 import AssetForm from './AssetForm';
 import Description from './Description';
