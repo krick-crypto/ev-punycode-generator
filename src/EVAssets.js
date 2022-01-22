@@ -1,22 +1,24 @@
 import { useRef, useState } from "react";
 import Description from "./Description";
+import { useParams } from "react-router-dom";
 const tr46 = require("tr46");
 
 
-const EVAssets = ({options}) => {
-    const imgEl = useRef(null);
+const EVAssets = () => {
     const canvasEl = useRef(null);
+    const imgEl = useRef(null);
     const [title, setTitle] = useState("");
-    const [punycode, setPunycode] = useState("");
+    const [unicode, setUnicode] = useState("");
 
-    const {nmcAsset, registration} = options;
 
-    const onLoad = e => {
-        e.preventDefault();
-    
+    const {prefix, punycode, registration} = useParams();
+
+    const nmcAsset = prefix.concat("/"+punycode);
+
+    const onLoad = () => {   
         const punycode = nmcAsset.substring(nmcAsset.indexOf("/")+1,nmcAsset.length);
         const convertedPunycode = tr46.toUnicode(punycode).domain;
-        setPunycode(convertedPunycode);
+        setUnicode(convertedPunycode);
     
         const canvas = canvasEl.current;
         const imgWidth = imgEl.current.width;
@@ -40,27 +42,26 @@ const EVAssets = ({options}) => {
         ctx.fillText(`Registered on ${registration}`, imgWidth - 25, imgHeight - 30);
     
         setTitle(`${convertedPunycode} | ${registration} | nmcAssets | ${nmcAsset}`);
-    
-      }
+   };    
 
     return (
     <>
-       <canvas ref={canvasEl}></canvas>
+     
+     <canvas ref={canvasEl}></canvas>
       <Description 
         title={title} 
-        punycode={punycode} 
+        punycode={unicode} 
         mcAsset={nmcAsset} 
         registration={registration}
-      />
-    <div style={{ display: "none" }}>
+      /> 
+      <div style={{ display: "none" }}>
         <img
-          src="./nmcframe.png"
-          ref={imgEl}
-          alt="nmcframe"
-          onLoad={onLoad}
+            src="/nmcframe.png"
+            ref={imgEl}
+            alt="nmcframe"
+            onLoad={onLoad}
         />
-      </div>  
-      
+      </div>           
       </>
     );
 }

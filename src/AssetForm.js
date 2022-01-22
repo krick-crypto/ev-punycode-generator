@@ -1,3 +1,4 @@
+import {useState} from "react";
 import { Center } from '@chakra-ui/react';
 import {
     FormControl,
@@ -10,14 +11,24 @@ import {
 import { useNavigate } from "react-router-dom";
 
 
-const AssetForm = ({inputs, handleChange}) => {
-    
+const AssetForm = () => {
+    const [inputs, setInputs] = useState({nmcAsset: "", registration: ""});
     const {nmcAsset, registration} = inputs;
     const navigate = useNavigate();
 
+    const handleChange = e => {
+        setInputs({...inputs, [e.target.name]: e.target.value});
+      }
+    
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        navigate(`/${nmcAsset}/${registration}`)
+    }
+
     return (
     <Center width="100vw" height="100vh">
-        <form onSubmit={() => navigate("/ev")}>
+        <form onSubmit={onSubmit}>
             <FormControl mb={6}>
                 <FormLabel htmlFor="nmcAsset">Asset</FormLabel>
                 <Input id="nmcAsset" name="nmcAsset" type="text"
