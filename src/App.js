@@ -6,8 +6,6 @@ const tr46 = require("tr46");
 function App() {
   const imgEl = useRef(null);
   const canvasEl = useRef(null);
-  const [nmcAsset, setnmcAsset] = useState("");
-  const [registration, setRegistration] = useState("");
   const [title, setTitle] = useState("");
   const [punycode, setPunycode] = useState("");
   const [inputs, setInputs] = useState({nmcAsset: "", registration: ""});
@@ -16,6 +14,7 @@ function App() {
     setInputs({...inputs, [e.target.name]: e.target.value});
   }
 
+  const { nmcAsset, registration } = inputs;
 
   const onSubmit = e => {
     e.preventDefault();
