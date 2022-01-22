@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useRef, useState } from "react";
+import AssetForm from './AssetForm';
 const tr46 = require("tr46");
 
 function App() {
@@ -8,6 +9,13 @@ function App() {
   const [nmcAsset, setnmcAsset] = useState("");
   const [registration, setRegistration] = useState("");
   const [title, setTitle] = useState("");
+  const [punycode, setPunycode] = useState("");
+  const [inputs, setInputs] = useState({nmcAsset: "", registration: ""});
+
+  const handleChange = e => {
+    setInputs({...inputs, [e.target.name]: e.target.value});
+  }
+
 
   const onSubmit = e => {
     e.preventDefault();
@@ -36,24 +44,43 @@ function App() {
     ctx.fillText(`Registered on ${registration}`, imgWidth - 25, imgHeight - 30);
 
     setTitle(`${tr46.toUnicode(punycode).domain} | ${registration} | nmcAssets | ${nmcAsset}`);
+    setPunycode(tr46.toUnicode(punycode).domain);
+
   }
 
   return (
     <div className="App">
-     <form onSubmit={onSubmit}>
-       <label>
-          nmcAsset:
-          <input type="text" value={nmcAsset} onChange={e => setnmcAsset(e.target.value)} />
-        </label>
-
-        <label>
-          Registered on:
-          <input type="text" value={registration} onChange={e => setRegistration(e.target.value)} />
-        </label>
-        <input type="submit" value="Submit" />
-     </form> 
+     <AssetForm onSubmit={onSubmit} inputs={inputs} handleChange={handleChange} />
       <canvas ref={canvasEl}></canvas>
-      {title && <p>Title: {title}</p>}
+      {title && <div>
+                <p>Title: {title}</p>
+                <ul>
+                  <li>
+                    Decoded Asset: {tr46.toUnicode(punycode).domain}
+                  </li>
+                  <li>
+                    Asset: {nmcAsset}
+                  </li>
+                  <li>
+                    Mint: {registration}
+                  </li>
+                </ul>
+                <p>
+                A few pioneers in the blockchain space used an encoding language called "punycode" 
+                to encode various forms of art, emojis, alphabets and words as non-fungible assets, 
+                onto the Namecoin blockchain. In hindsight, this gave birth to one of the 1st NFT 
+                collections in the history of cryptographic collectables: Punycodes.
+                </p>
+                <p>
+                Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have a small $NMC in your vault & it'll autorenew.
+                </p>
+                <p>
+                1 $NMC = Autorenewal for 5 years 
+                </p>
+                <p>
+                10 $NMC = Autorenewal for 50 years
+                </p>
+              </div>}
       <div style={{ display: "none" }}>
         <img
           src="./nmcframe.png"
