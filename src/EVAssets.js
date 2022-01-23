@@ -51,8 +51,8 @@ const EVAssets = () => {
     
         ctx.font = "20px sans-serif";
         ctx.textAlign = "right";  
-        ctx.fillText(nmcAsset, imgWidth*1.3-25, imgHeight*1.3-55);
-        ctx.fillText(`Registered on ${registrationImage}`, imgWidth*1.3 - 25, imgHeight*1.3 - 30);
+        ctx.fillText(nmcAsset, imgWidth*1.3-35, imgHeight*1.3-68);
+        ctx.fillText(`${registrationImage}`, imgWidth*1.3 - 35, imgHeight*1.3 - 43);
     
         setTitle(`${convertedPunycode} | ${registrationTitle} | Punycodes | ${nmcAsset}`);
    };    
