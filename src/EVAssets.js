@@ -2,6 +2,9 @@ import { useRef, useState } from "react";
 import Description from "./Description";
 import { useParams } from "react-router-dom";
 import Punycodes from "./punycodes";
+import { format, parseISO, formatISO } from 'date-fns';
+
+
 const tr46 = require("tr46");
 
 
@@ -14,8 +17,9 @@ const EVAssets = () => {
 
     const nmcAsset = prefix.concat("/"+punycode);
     const punyDescription = Punycodes.find(({ ID }) => ID === nmcAsset);
-    const {Year, Month ,Day} = punyDescription;
-    const registration = `${Year}-${Month}-${Day}`;  
+    const {Date} = punyDescription;
+    console.log(punyDescription);
+    const registration = format(parseISO(Date), "yyyy-MM-dd");
 
     const onLoad = () => {   
         const punycode = nmcAsset.substring(nmcAsset.indexOf("/")+1,nmcAsset.length);
