@@ -10,11 +10,12 @@ import {
   Box,
 } from '@chakra-ui/react';
 
-const Description = ({title, punycode , nmcAsset, registration}) => {
+const Description = ({title, punycode , nmcAsset, registration, category,
+                     onLoad, translation, setTranslation}) => {
   const { hasCopied, onCopy } = useClipboard(title);
   const [description, setDescription] = useState("");
   const { hasCopied: hasCopiedDescription, onCopy: onCopyDescription } = useClipboard(description);
-  
+
   useEffect(() => {
     if (punycode) {
       setDescription(`Decoded Asset: ${punycode}
@@ -40,7 +41,7 @@ Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have 
             </Button>
           </Flex>
         </FormControl>
-        <FormControl w={{lg: "80%", xl: "95%", "2xl": "80%"}} px={{base: "2.5em", lg: "0"}}>
+        <FormControl w={{lg: "80%", xl: "95%", "2xl": "80%"}} mb={4} px={{base: "2.5em", lg: "0"}}>
           <FormLabel>Description</FormLabel>
           <Flex >
           <Textarea
@@ -53,6 +54,16 @@ Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have 
             </Button>
           </Flex>
         </FormControl>
+        {category === "Text" && 
+          <FormControl w={{lg: "80%", xl: "70%", "2xl": "50%"}} mb={4} px={{base: "2.5em", lg: "0"}}>
+            <FormLabel>Translation (optional)</FormLabel>
+            <Flex>
+               <Input type="text" value={translation} onChange={e => setTranslation(e.target.value)}/>
+               <Button onClick={onLoad} ml={2}>
+                  Add to image
+               </Button>
+          </Flex>
+          </FormControl>}
     </Box>
    )
 }

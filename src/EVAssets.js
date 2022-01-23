@@ -15,11 +15,11 @@ const EVAssets = () => {
     const [title, setTitle] = useState("");
     const [unicode, setUnicode] = useState("");
     const {prefix, punycode} = useParams();
+    const [translation, setTranslation] = useState("");
 
     const nmcAsset = prefix.concat("/"+punycode);
     const punyDescription = Punycodes.find(({ ID }) => ID === nmcAsset);
-    const {Date} = punyDescription;
-    console.log(punyDescription);
+    const {Date, Category} = punyDescription;
     const registrationImage = format(parseISO(Date), "yyyy-MM-dd");
     const registrationTitle = format(parseISO(Date), "yyyy-MM");
     const registrationDescription = format(parseISO(Date), "MMM do, yyyy");
@@ -43,11 +43,16 @@ const EVAssets = () => {
     
         ctx.drawImage(imgEl.current, imgWidth*0.3, imgHeight*0.3);
     
-        ctx.font = "150px sans-serif";
+        ctx.font = Category === "Text" ? "120px sans-serif" : "150px sans-serif";
         ctx.textAlign = "center";
         ctx.fillStyle = "white";
         ctx.textBaseline = "middle";
         ctx.fillText(convertedPunycode, imgWidth*(0.3 + 1/2), imgHeight*(0.3+ 1/2));
+        if (Category === "Text") {
+          ctx.font = "45px sans-serif";
+          ctx.fillText(`(${translation})`, imgWidth*(0.3 + 1/2), imgHeight*(0.3+ 1/2)+100);
+        }
+
     
         ctx.font = "20px sans-serif";
         ctx.textAlign = "right";  
@@ -66,6 +71,10 @@ const EVAssets = () => {
             punycode={unicode} 
             nmcAsset={nmcAsset} 
             registration={registrationDescription}
+            category={Category}
+            translation={translation}
+            setTranslation={setTranslation}
+            onLoad={onLoad}
           /> 
      </SimpleGrid>
       <div style={{ display: "none" }}>
