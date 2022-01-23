@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import Description from "./Description";
 import { useParams } from "react-router-dom";
 import Punycodes from "./punycodes";
-import { format, parseISO, formatISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
+import { SimpleGrid, Box } from '@chakra-ui/react'
 
 
 const tr46 = require("tr46");
@@ -17,7 +18,7 @@ const EVAssets = () => {
 
     const nmcAsset = prefix.concat("/"+punycode);
     const punyDescription = Punycodes.find(({ ID }) => ID === nmcAsset);
-    const {Date , ID} = punyDescription;
+    const {Date} = punyDescription;
     console.log(punyDescription);
     const registrationImage = format(parseISO(Date), "yyyy-MM-dd");
     const registrationTitle = format(parseISO(Date), "yyyy-MM");
@@ -37,33 +38,36 @@ const EVAssets = () => {
         canvas.width = imgWidth;
         canvas.height = imgHeight;
         const ctx = canvas.getContext("2d");
+        ctx.scale(0.7, 0.7);
+
     
-        ctx.drawImage(imgEl.current, 0, 0);
+        ctx.drawImage(imgEl.current, imgWidth*0.3, imgHeight*0.3);
     
         ctx.font = "150px sans-serif";
         ctx.textAlign = "center";
         ctx.fillStyle = "white";
         ctx.textBaseline = "middle";
-        ctx.fillText(convertedPunycode, imgWidth / 2, imgHeight / 2);
+        ctx.fillText(convertedPunycode, imgWidth*(0.3 + 1/2), imgHeight*(0.3+ 1/2));
     
         ctx.font = "20px sans-serif";
         ctx.textAlign = "right";  
-        ctx.fillText(nmcAsset, imgWidth - 25, imgHeight - 55);
-        ctx.fillText(`Registered on ${registrationImage}`, imgWidth - 25, imgHeight - 30);
+        ctx.fillText(nmcAsset, imgWidth*1.3-25, imgHeight*1.3-55);
+        ctx.fillText(`Registered on ${registrationImage}`, imgWidth*1.3 - 25, imgHeight*1.3 - 30);
     
         setTitle(`${convertedPunycode} | ${registrationTitle} | Punycodes | ${nmcAsset}`);
    };    
 
     return (
     <>
-     
-     <canvas ref={canvasEl}></canvas>
-      <Description 
-        title={title} 
-        punycode={unicode} 
-        nmcAsset={nmcAsset} 
-        registration={registrationDescription}
-      /> 
+     <SimpleGrid columns={2}>
+       <canvas ref={canvasEl}></canvas>
+          <Description 
+            title={title} 
+            punycode={unicode} 
+            nmcAsset={nmcAsset} 
+            registration={registrationDescription}
+          /> 
+     </SimpleGrid>
       <div style={{ display: "none" }}>
         <img
             src="/nmcframe.png"

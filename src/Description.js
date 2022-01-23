@@ -1,7 +1,26 @@
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Flex,
+  useClipboard,
+} from '@chakra-ui/react';
+
 const Description = ({title, punycode , nmcAsset, registration}) => {
+  const { hasCopied, onCopy } = useClipboard(title);
+
    return (
     <div>
-        <p>Title: {title}</p>
+        <FormControl w="50%">
+          <FormLabel>Title</FormLabel>
+          <Flex >
+            <Input type="text" value={title} isReadOnly={true} />
+            <Button onClick={onCopy} ml={2}>
+              {hasCopied ? 'Copied' : 'Copy'}
+            </Button>
+          </Flex>
+        </FormControl>
         <ul>
           <li>
             Decoded Asset: {punycode}
