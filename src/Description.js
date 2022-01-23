@@ -20,7 +20,7 @@ const Description = ({title, punycode , nmcAsset, registration}) => {
 Asset: ${nmcAsset}
 Mint: ${registration}
       
-A few pioneers in the blockchain space used an encoding language called "punycode" to encode various forms of art, emojis, alphabets and words as non-fungible assets,onto the Namecoin blockchain. In hindsight, this gave birth to one of the 1st NFT collectionsin the history of cryptographic collectables: Punycodes.
+A few pioneers in the blockchain space used an encoding language called "punycode" to encode various forms of art, emojis, alphabets and words as non-fungible assets, onto the Namecoin blockchain. In hindsight, this gave birth to one of the 1st NFT collections in the history of cryptographic collectables: Punycodes.
       
 Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have a small $NMC in your vault & it'll autorenew.
 1 $NMC = Autorenewal for 5 years
