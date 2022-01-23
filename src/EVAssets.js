@@ -79,7 +79,7 @@ const EVAssets = () => {
      </SimpleGrid>
       <div style={{ display: "none" }}>
         <img
-            src="/nmcframe.png"
+            src="/ev-punycode-generator/nmcframe.png"
             ref={imgEl}
             alt="nmcframe"
             onLoad={onLoad}
