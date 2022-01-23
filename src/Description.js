@@ -7,6 +7,7 @@ import {
   Flex,
   useClipboard,
   Textarea,
+  Box,
 } from '@chakra-ui/react';
 
 const Description = ({title, punycode , nmcAsset, registration}) => {
@@ -29,8 +30,8 @@ Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have 
   }, [nmcAsset, punycode, registration])
 
    return (
-    <div>
-        <FormControl w="50%" mb={4} mt="17%">
+    <Box ml={{lg: "5em", xl:"0"}}>
+        <FormControl w={{lg: "80%", xl: "70%", "2xl": "50%"}} mb={4} mt={{lg: "0", xl: "10em"}} px={{base: "2.5em", lg: "0"}}>
           <FormLabel>Title</FormLabel>
           <Flex>
             <Input type="text" value={title} isReadOnly={true} />
@@ -39,20 +40,20 @@ Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have 
             </Button>
           </Flex>
         </FormControl>
-        <FormControl w="80%">
+        <FormControl w={{lg: "80%", xl: "95%", "2xl": "80%"}} px={{base: "2.5em", lg: "0"}}>
           <FormLabel>Description</FormLabel>
           <Flex >
           <Textarea
               value={description}
               isReadOnly
-              h="40vh"
+              h="22em"
           />
             <Button onClick={onCopyDescription} ml={2}>
               {hasCopiedDescription ? 'Copied' : 'Copy'}
             </Button>
           </Flex>
         </FormControl>
-    </div>
+    </Box>
    )
 }
 

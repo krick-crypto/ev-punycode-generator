@@ -1,4 +1,4 @@
-import { createContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Description from "./Description";
 import { useParams } from "react-router-dom";
 import Punycodes from "./punycodes";
@@ -59,7 +59,7 @@ const EVAssets = () => {
 
     return (
     <>
-     <SimpleGrid columns={2}>
+     <SimpleGrid columns={{lg: 1, xl: 2}}>
        <canvas ref={canvasEl}></canvas>
           <Description 
             title={title} 
