@@ -17,9 +17,11 @@ const EVAssets = () => {
 
     const nmcAsset = prefix.concat("/"+punycode);
     const punyDescription = Punycodes.find(({ ID }) => ID === nmcAsset);
-    const {Date} = punyDescription;
+    const {Date , ID} = punyDescription;
     console.log(punyDescription);
-    const registration = format(parseISO(Date), "yyyy-MM-dd");
+    const registrationImage = format(parseISO(Date), "yyyy-MM-dd");
+    const registrationTitle = format(parseISO(Date), "yyyy-MM");
+    const registrationDescription = format(parseISO(Date), "MMM do, yyyy");
 
     const onLoad = () => {   
         const punycode = nmcAsset.substring(nmcAsset.indexOf("/")+1,nmcAsset.length);
@@ -47,9 +49,9 @@ const EVAssets = () => {
         ctx.font = "20px sans-serif";
         ctx.textAlign = "right";  
         ctx.fillText(nmcAsset, imgWidth - 25, imgHeight - 55);
-        ctx.fillText(`Registered on ${registration}`, imgWidth - 25, imgHeight - 30);
+        ctx.fillText(`Registered on ${registrationImage}`, imgWidth - 25, imgHeight - 30);
     
-        setTitle(`${convertedPunycode} | ${registration} | nmcAssets | ${nmcAsset}`);
+        setTitle(`${convertedPunycode} | ${registrationTitle} | Punycodes | ${nmcAsset}`);
    };    
 
     return (
@@ -59,8 +61,8 @@ const EVAssets = () => {
       <Description 
         title={title} 
         punycode={unicode} 
-        mcAsset={nmcAsset} 
-        registration={registration}
+        nmcAsset={nmcAsset} 
+        registration={registrationDescription}
       /> 
       <div style={{ display: "none" }}>
         <img
