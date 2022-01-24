@@ -3,10 +3,11 @@ import Description from "./Description";
 import { useParams } from "react-router-dom";
 import Punycodes from "./punycodes";
 import { format, parseISO } from 'date-fns';
-import { SimpleGrid, Box } from '@chakra-ui/react'
+import { SimpleGrid, Flex, Spacer } from '@chakra-ui/react'
 
 
 const tr46 = require("tr46");
+const SCALE = 1;
 
 
 const EVAssets = () => {
@@ -38,34 +39,34 @@ const EVAssets = () => {
         canvas.width = imgWidth;
         canvas.height = imgHeight;
         const ctx = canvas.getContext("2d");
-        ctx.scale(0.7, 0.7);
+        ctx.scale(SCALE, SCALE);
 
     
-        ctx.drawImage(imgEl.current, imgWidth*0.3, imgHeight*0.3);
+        ctx.drawImage(imgEl.current, imgWidth*(1-SCALE), imgHeight*(1-SCALE));
     
         ctx.font = Category === "Text" ? "120px sans-serif" : "150px sans-serif";
         ctx.textAlign = "center";
         ctx.fillStyle = "white";
         ctx.textBaseline = "middle";
-        ctx.fillText(convertedPunycode, imgWidth*(0.3 + 1/2), imgHeight*(0.3+ 1/2));
+        ctx.fillText(convertedPunycode, imgWidth*(1-SCALE + 1/2), imgHeight*(1-SCALE+ 1/2));
         if (Category === "Text") {
           ctx.font = "45px sans-serif";
-          ctx.fillText(`(${translation})`, imgWidth*(0.3 + 1/2), imgHeight*(0.3+ 1/2)+100);
+          ctx.fillText(`(${translation})`, imgWidth*(1-SCALE + 1/2), imgHeight*(1-SCALE+ 1/2)+100);
         }
 
     
         ctx.font = "20px sans-serif";
         ctx.textAlign = "right";  
-        ctx.fillText(nmcAsset, imgWidth*1.3-35, imgHeight*1.3-68);
-        ctx.fillText(`${registrationImage}`, imgWidth*1.3 - 35, imgHeight*1.3 - 43);
+        ctx.fillText(nmcAsset, imgWidth*(2-SCALE)-35, imgHeight*(2-SCALE)-68);
+        ctx.fillText(`${registrationImage}`, imgWidth*(2-SCALE) - 35, imgHeight*(2-SCALE) - 43);
     
         setTitle(`${convertedPunycode} | ${registrationTitle} | Punycodes | ${nmcAsset}`);
    };    
 
     return (
     <>
-     <SimpleGrid columns={{lg: 1, xl: 2}}>
-       <canvas ref={canvasEl}></canvas>
+     <Flex direction={{base: "column", xl: "row"}}>
+       <canvas ref={canvasEl} style={{marginLeft: "8vh", marginTop: "8vh"}}></canvas>
           <Description 
             title={title} 
             punycode={unicode} 
@@ -76,7 +77,7 @@ const EVAssets = () => {
             setTranslation={setTranslation}
             onLoad={onLoad}
           /> 
-     </SimpleGrid>
+     </Flex>
       <div style={{ display: "none" }}>
         <img
             src="/ev-punycode-generator/nmcframe.png"
