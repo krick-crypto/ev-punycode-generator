@@ -4,10 +4,11 @@ import { useParams } from "react-router-dom";
 import Punycodes from "./punycodes";
 import { format, parseISO } from 'date-fns';
 import { SimpleGrid, Flex, Spacer } from '@chakra-ui/react'
-
+import Graphemer from 'graphemer';
 
 const tr46 = require("tr46");
 const SCALE = 1;
+
 
 
 const EVAssets = () => {
@@ -25,11 +26,29 @@ const EVAssets = () => {
     const registrationTitle = format(parseISO(Date), "yyyy-MM");
     const registrationDescription = format(parseISO(Date), "MMM do, yyyy");
 
+    const calculateFontSize = (unicode, Category) => {
+      const splitter = new Graphemer();
+
+      const graphemeCount = splitter.countGraphemes(unicode);
+      switch(Category) {
+        case "Emoji":
+          let size = "150px";
+          if (graphemeCount >= 11) {
+            size = "45px"
+          }
+          return size;
+        case "Text":
+          return "120px";
+        default:
+          return "150px";
+      }
+    }
+
     const onLoad = () => {   
         const punycode = nmcAsset.substring(nmcAsset.indexOf("/")+1,nmcAsset.length);
         const convertedPunycode = tr46.toUnicode(punycode).domain;
         
-
+        const fontSize = calculateFontSize(convertedPunycode, Category);
         setUnicode(convertedPunycode);
     
         const canvas = canvasEl.current;
@@ -44,7 +63,7 @@ const EVAssets = () => {
     
         ctx.drawImage(imgEl.current, imgWidth*(1-SCALE), imgHeight*(1-SCALE));
     
-        ctx.font = Category === "Text" ? "120px sans-serif" : "150px sans-serif";
+        ctx.font = `${fontSize} sans-serif`
         ctx.textAlign = "center";
         ctx.fillStyle = "white";
         ctx.textBaseline = "middle";

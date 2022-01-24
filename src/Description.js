@@ -18,17 +18,13 @@ const Description = ({title, punycode , nmcAsset, registration, category,
 
   useEffect(() => {
     if (punycode) {
-      setDescription(`Decoded Asset: ${punycode}
-Asset: ${nmcAsset}
-Mint: ${registration}
+      setDescription(`Decoded Asset: ${punycode}\nAsset: ${nmcAsset}\nMint: ${registration}\n
       
 A few pioneers in the blockchain space used an encoding language called "punycode" to encode various forms of art, emojis, alphabets and words as non-fungible assets, onto the Namecoin blockchain. In hindsight, this gave birth to one of the 1st NFT collections in the history of cryptographic collectables: Punycodes.
 
 Total supply of Punycodes (2011-2017): 3,255
 
-Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have a small $NMC in your vault & it'll autorenew.
-1 $NMC = Autorenewal for 5 years
-10 $NMC = Autorenewal for 50 years`)
+Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have a small $NMC in your vault & it'll autorenew.\n1 $NMC = Autorenewal for 5 years\n10 $NMC = Autorenewal for 50 years`)
     }
   }, [nmcAsset, punycode, registration])
 
