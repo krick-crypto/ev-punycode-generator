@@ -34,7 +34,6 @@ const EVAssets = () => {
       const splitter = new Graphemer();
 
       const graphemeCount = splitter.countGraphemes(unicode);
-      console.log({graphemeCount})
       switch(Category) {
         case "Emoji":
           let size = "150px";
