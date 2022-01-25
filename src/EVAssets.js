@@ -23,7 +23,8 @@ const EVAssets = () => {
     const punyDescription = Punycodes.find(({ ID }) => ID === nmcAsset);
     const {Day, Month, Year, Category} = punyDescription;
     const monthFormatted = Month < 10 ? `0${Month}` : Month;
-    const date = `${Year}-${monthFormatted}-${Day}`;
+    const dayFormatted = Day < 10 ? `0${Day}` : Day;
+    const date = `${Year}-${monthFormatted}-${dayFormatted}`;
 
     const registrationImage = format(parseISO(date), "yyyy-MM-dd");
     const registrationTitle = format(parseISO(date), "yyyy-MM");
