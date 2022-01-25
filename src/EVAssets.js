@@ -34,6 +34,7 @@ const EVAssets = () => {
       const splitter = new Graphemer();
 
       const graphemeCount = splitter.countGraphemes(unicode);
+      console.log({graphemeCount})
       switch(Category) {
         case "Emoji":
           let size = "150px";
@@ -43,6 +44,14 @@ const EVAssets = () => {
           return size;
         case "Text":
           return "120px";
+        case "ASCII Art":
+          if (graphemeCount > 6) {
+            if (graphemeCount >= 11) {
+              return "70px";
+            }
+            return "80px";
+          }
+          return "100px";
         default:
           return "150px";
       }
