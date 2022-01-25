@@ -52,6 +52,8 @@ const EVAssets = () => {
             return "80px";
           }
           return "100px";
+        case "Symbol":
+          return "180px";
         default:
           return "150px";
       }
