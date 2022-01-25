@@ -43,7 +43,19 @@ const EVAssets = () => {
           }
           return size;
         case "Text":
-          return "120px";
+          if (["xn--clchc0ea0b2g2a9gcd", "xn--xkc2al3hye2a",
+              "xn--xkc2dl3a5ee0h", "xn--smrgsbord-82a8p",
+              "xn--8-7sbabhcv6b1cfn"].includes(punycode)) {
+            return "100px";
+          } else if (["xn--cckbak0byl6e", "xn--n8juczb8ml64m5r6a",
+                      "xn--h9jeami8py253a", "xn--fiq4mp3eqscr2bfxgex2c",
+                      "xn--80ahnahceodec3ba", "xn--fiqq24b8jea300hll5d",
+                       "xn--eckfz3byc3fk"].includes(punycode)) {
+            return "90px";
+          } else if (graphemeCount >= 10) {
+            return "70px";
+          }
+          return "110px";
         case "ASCII Art":
           if (graphemeCount > 6) {
             if (graphemeCount >= 11) {
