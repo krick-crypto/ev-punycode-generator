@@ -74,7 +74,9 @@ const EVAssets = () => {
         ctx.fillText(convertedPunycode, imgWidth*(1-SCALE + 1/2), imgHeight*(1-SCALE+ 1/2));
         if (Category === "Text") {
           ctx.font = "45px sans-serif";
-          ctx.fillText(`(${translation})`, imgWidth*(1-SCALE + 1/2), imgHeight*(1-SCALE+ 1/2)+100);
+          if (translation !== "") {
+            ctx.fillText(`(${translation})`, imgWidth*(1-SCALE + 1/2), imgHeight*(1-SCALE+ 1/2)+100);
+          }
         }
 
     
