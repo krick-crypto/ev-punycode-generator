@@ -21,10 +21,17 @@ const EVAssets = () => {
 
     const nmcAsset = prefix.concat("/"+punycode);
     const punyDescription = Punycodes.find(({ ID }) => ID === nmcAsset);
-    const {Date, Category} = punyDescription;
-    const registrationImage = format(parseISO(Date), "yyyy-MM-dd");
-    const registrationTitle = format(parseISO(Date), "yyyy-MM");
-    const registrationDescription = format(parseISO(Date), "MMM do, yyyy");
+    const {Day, Month, Year, Category} = punyDescription;
+    const monthFormatted = Month < 10 ? `0${Month}` : Month;
+    const date = `${Year}-${monthFormatted}-${Day}`;
+
+    console.log(date)
+    /*const dt = new Date(date);
+    const dtDateOnly = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+    console.log(format(dtDateOnly, 'YYYY-MM-DD'));*/
+    const registrationImage = format(parseISO(date), "yyyy-MM-dd");
+    const registrationTitle = format(parseISO(date), "yyyy-MM");
+    const registrationDescription = format(parseISO(date), "MMM do, yyyy");
 
     const calculateFontSize = (unicode, Category) => {
       const splitter = new Graphemer();
