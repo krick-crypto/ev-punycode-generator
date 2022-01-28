@@ -36,7 +36,7 @@ const EVAssets = () => {
       const graphemeCount = splitter.countGraphemes(unicode);
       switch(Category) {
         case "Emoji":
-          let size = "150px";
+          let size = "200px";
           if (graphemeCount >= 11) {
             size = "45px"
           }
