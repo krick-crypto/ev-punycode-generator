@@ -30,9 +30,7 @@ Total supply of Punycodes (2011-2017): 3,255
 
 Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have a small $NMC in your vault & it'll autorenew.
 
-1 $NMC = Autorenewal for 5 years
-
-10 $NMC = Autorenewal for 50 years`)
+2 $NMC = Autorenewal for 100+ years`)
     }
   }, [nmcAsset, punycode, registration])
 
