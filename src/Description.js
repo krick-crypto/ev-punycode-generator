@@ -28,7 +28,7 @@ A few pioneers in the blockchain space used an encoding language called "punycod
 
 Total supply of Punycodes (2011-2017): 3,255
 
-Note, Namecoin is a DNS & thus assets need to be renewed (every 9 months). Have a small $NMC in your vault & it'll autorenew.
+Note, Namecoin is a DNS & thus assets need to be renewed (every 8 months). Have a small $NMC in your vault & it'll autorenew.
 
 2 $NMC = Autorenewal for 100+ years`)
     }
