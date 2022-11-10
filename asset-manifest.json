@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/ev-punycode-generator/static/js/main.85326376.js",
+    "static/js/787.189a8a72.chunk.js": "/ev-punycode-generator/static/js/787.189a8a72.chunk.js",
+    "index.html": "/ev-punycode-generator/index.html",
+    "main.85326376.js.map": "/ev-punycode-generator/static/js/main.85326376.js.map",
+    "787.189a8a72.chunk.js.map": "/ev-punycode-generator/static/js/787.189a8a72.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.85326376.js"
+  ]
+}
